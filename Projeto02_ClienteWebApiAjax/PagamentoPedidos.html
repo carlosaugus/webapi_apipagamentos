@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>Efetuar Pagamento</h1>
+    <div>
+        <label>Num. Pedido: </label>
+        <input type="text" id="numPedido" />
+        <br />
+        <label>Num. Cartão:</label>
+        <input type="text" id="numCartao" />
+        <br />
+        <label>Valor:</label>
+        <input type="text" id="valor" />
+        <br />
+        <label>Data:</label>
+        <input type="date" id="data" />
+        <br />
+        <input type="button" id="incluirPagamento" value="Pagar" />
+    </div>
+
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //Buscando os pagamentos
+            $("#incluirPagamento").click(function () {
+                $.ajax({
+                    dataType: 'json',
+                    url: 'http://localhost:51434/api/pagamentos',
+                    method: 'POST',
+                    data: {
+                        NumeroPedido: $("#numPedido").val(),
+                        NumeroCartao: $("#numCartao").val(),
+                        Valor: $("#valor").val(),
+                        DataPagto: $("#data").val(),
+                        Status: 1
+                    },
+                    success: function (resposta) {
+                        alert("Dados inseridos");
+                    },
+                    error: function (erro) {
+                        alert("Erro: " + erro.responseText);
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

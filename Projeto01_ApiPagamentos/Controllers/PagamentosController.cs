@@ -7,15 +7,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Projeto01_ApiPagamentos.Controllers
 {
+    [EnableCors(origins:"*", methods:"*", headers: "*")]
     public class PagamentosController : ApiController
     {
         static readonly PagamentosDao dao = new PagamentosDao();
 
         #region HTTP GET - Lista todos os pagamentos
-
         public IEnumerable<Pagamento> GetPagamentos()
         {
             return dao.BuscarTodos();

@@ -10,6 +10,7 @@ namespace Projeto01_ApiPagamentos
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.EnableCors();
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -20,6 +21,7 @@ namespace Projeto01_ApiPagamentos
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            // De Xml para Json
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.Add(config.Formatters.JsonFormatter);
         }
